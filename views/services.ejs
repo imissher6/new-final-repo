@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar .menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .profile {
+            position: relative;
+        }
+
+        .navbar .profile .profile-name {
+            cursor: pointer;
+        }
+
+        .navbar .profile .dropdown {
+            display: none;
+            position: absolute;
+            top: 30px;
+            right: 0;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 150px;
+        }
+
+        .navbar .profile .dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .navbar .profile .dropdown a:hover {
+            background-color: #f9fafb;
+        }
+
+        .navbar .profile:hover .dropdown {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card {
+            flex: 1 1 calc(50% - 20px);
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: #333; /* Ensures text color matches */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            margin: 0 0 10px;
+            color: #222;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/_navbar') %>    
+    <div class="container">
+        <h1>Expert IT Services</h1>
+        <p class="subtitle">Reliable solutions for all your IT needs</p>
+        <div class="card-container">
+            <!-- Example Cards -->
+            <a href="/service/device-repair" class="card">
+                <img src="https://via.placeholder.com/600x300" alt="Device Repair">
+                <div class="card-content">
+                    <h3>Device Repair</h3>
+                    <p>Expert repair solutions for malfunctioning devices.</p>
+                </div>
+            </a>
+            <a href="/service/equipment-replacement" class="card">
+                <img src="https://via.placeholder.com/600x300" alt="Equipment Replacement">
+                <div class="card-content">
+                    <h3>Equipment Replacement</h3>
+                    <p>Reliable replacement options for essential equipment.</p>
+                </div>
+            </a>
+            <!-- Add more service cards as needed -->
+        </div>
+    </div>
+</body>
+</html>

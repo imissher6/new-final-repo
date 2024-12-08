@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container, .item-list-container {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-container h2, .item-list-container h2 {
+            color: #333;
+        }
+
+        input[type="text"], input[type="description"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .item-list-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .item-list-container li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-list-container li button {
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .item-list-container li button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Add New Item Form -->
+        <div class="form-container">
+            <h2>Add New Item</h2>
+            <form action="/add" method="POST">
+                <input type="text" name="name" placeholder="Item Name" required>
+                <input type="text" name="description" placeholder="Item Description" required>
+                <button type="submit">Add Item</button>
+            </form>
+        </div>
+
+        <!-- Item List -->
+        <div class="item-list-container">
+            <h2>Item List</h2>
+            <ul>
+                <% items.forEach(item => { %>
+                    <li>
+                        <span><strong><%= item.name %></strong></span> - <span><%= item.description %></span>
+                        <form action="/delete/<%= item._id %>" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

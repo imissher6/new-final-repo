@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Repair</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .option-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .option-card {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .option-card img {
+            width: 60px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .option-card span {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Device Repair</h1>
+        <p class="subtitle">Select the device you want to repair:</p>
+        <div class="option-list">
+            <!-- Phone -->
+            <a href="/service/device-repair/phone" class="option-card">
+                <img src="https://via.placeholder.com/60" alt="Phone">
+                <span>Phone</span>
+            </a>
+            <!-- Computer -->
+            <a href="/service/device-repair/computer" class="option-card">
+                <img src="https://via.placeholder.com/60" alt="Computer">
+                <span>Computer</span>
+            </a>
+            <!-- Printer -->
+            <a href="/service/device-repair/printer" class="option-card">
+                <img src="https://via.placeholder.com/60" alt="Printer">
+                <span>Printer</span>
+            </a>
+            <!-- IoT Devices -->
+            <a href="/service/device-repair/iot" class="option-card">
+                <img src="https://via.placeholder.com/60" alt="IoT Devices">
+                <span>IoT Devices</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
