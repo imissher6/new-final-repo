@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div>Welcome, <%= employee.name %></div>
+        <div>
+            <a href="/employee/dashboard">Dashboard</a>
+            <a href="/employee/logout">Logout</a>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Employee Dashboard</h1>
+        <div class="card">
+            <h2>Orders</h2>
+            <p>Manage all client orders.</p>
+            <a href="/employee/orders">View Orders</a>
+        </div>
+        <div class="card">
+            <h2>Tickets</h2>
+            <p>Track client tickets and support issues.</p>
+            <a href="/employee/tickets">View Tickets</a>
+        </div>
+        <div class="card">
+            <h2>Sales</h2>
+            <p>Track and manage sales data.</p>
+            <a href="/employee/sales">View Sales</a>
+        </div>
+        <div class="card">
+            <h2>Reports</h2>
+            <p>Generate and view reports.</p>
+            <a href="/employee/reports">View Reports</a>
+        </div>
+        <div class="card">
+            <h2>Projects</h2>
+            <p>Manage client projects.</p>
+            <a href="/employee/projects">View Projects</a>
+        </div>
+    </div>
+</body>
+</html>

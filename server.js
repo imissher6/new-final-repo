@@ -273,6 +273,16 @@ app.get('/employee/logout', (req, res) => {
     });
 });
 
+app.get('/employee/orders', async (req, res) => {
+    if (!req.session.employee) {
+        return res.redirect('/employee/login');
+    }
+
+    // Fetch all client orders (customize as needed)
+    const orders = await RepairRequest.find(); // Add filters for specific needs
+    res.render('employee-orders', { orders });
+});
+
 
 // Start the server
 const PORT = 3000;
