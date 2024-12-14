@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Login</title>
+    <title>Admin Registration</title>
     <style>
         :root {
             --bg-color: #12192c;
             --text-color: #fff;
             --input-bg: #1e293b;
             --input-text: #fff;
-            --btn-bg: #2d8cf0;
+            --btn-bg: #28a745;
+            --btn-hover-bg: #218838;
             --btn-text: #fff;
         }
 
@@ -19,7 +20,8 @@
             --text-color: #000;
             --input-bg: #fff;
             --input-text: #000;
-            --btn-bg: #3498db;
+            --btn-bg: #28a745;
+            --btn-hover-bg: #218838;
             --btn-text: #fff;
         }
 
@@ -49,17 +51,17 @@
             align-items: center;
         }
 
-        .phone-container {
-            width: 300px;
-            height: 600px;
-            border: 15px solid #000;
-            border-radius: 50px;
+        .laptop-container {
+            width: 450px;
+            height: 300px;
+            border: 10px solid #000;
+            border-radius: 10px;
             background-color: #fff;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .phone-screen {
+        .laptop-screen {
             width: 100%;
             height: 100%;
             display: flex;
@@ -67,7 +69,7 @@
             animation: slideImages 6s infinite;
         }
 
-        .phone-screen img {
+        .laptop-screen img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -79,7 +81,7 @@
             67%, 100% { transform: translateX(-200%); }
         }
 
-        .login-container {
+        .register-container {
             flex: 1;
             max-width: 400px;
             padding: 20px;
@@ -120,7 +122,21 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: var(--btn-hover-bg);
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .success {
+            color: green;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
         .toggle-container {
@@ -167,28 +183,39 @@
 </head>
 <body data-theme="dark">
     <div class="container">
-        <!-- Left Section (Phone Animation) -->
+        <!-- Left Section (Laptop Animation) -->
         <div class="left-section">
-            <div class="phone-container">
-                <div class="phone-screen">
+            <div class="laptop-container">
+                <div class="laptop-screen">
                     <img src="/images/image1.jpg" alt="Screen 1">
                     <img src="/images/image2.jpg" alt="Screen 2">
-                    <img src="/images/image3.png" alt="Screen 3">
+                    <img src="/images/image3.jpg" alt="Screen 3">
                 </div>
             </div>
         </div>
 
-        <!-- Right Section (Login Form) -->
-        <div class="login-container">
+        <!-- Right Section (Register Form) -->
+        <div class="register-container">
             <div class="toggle-container">
                 <label class="toggle-label">Dark Mode</label>
                 <div class="toggle" id="theme-toggle"></div>
             </div>
-            <h1>Employee Login</h1>
-            <form action="/employee/login" method="POST">
+            <h1>Admin Registration</h1>
+
+            <% if (errorMessage) { %>
+                <p class="error"><%= errorMessage %></p>
+            <% } %>
+
+            <% if (successMessage) { %>
+                <p class="success"><%= successMessage %></p>
+            <% } %>
+
+            <form action="/admin/register" method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </form>
         </div>
     </div>

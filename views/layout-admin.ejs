@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Sidebar -->
+    <div class="flex">
+        <aside class="w-64 bg-blue-900 text-white h-screen">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold">Apex Solutions</h2>
+            </div>
+            <nav class="mt-6">
+                <a href="/admin/dashboard" class="block py-2.5 px-4 <%= activePage === 'dashboard' ? 'bg-blue-800' : '' %>">Dashboard</a>
+                <a href="/admin/services" class="block py-2.5 px-4 <%= activePage === 'services' ? 'bg-blue-800' : '' %>">Services</a>
+                <a href="/admin/orders" class="block py-2.5 px-4 <%= activePage === 'orders' ? 'bg-blue-800' : '' %>">Orders</a>
+                <a href="/admin/users" class="block py-2.5 px-4 <%= activePage === 'users' ? 'bg-blue-800' : '' %>">Users</a>
+                <a href="/admin/settings" class="block py-2.5 px-4 <%= activePage === 'settings' ? 'bg-blue-800' : '' %>">Settings</a>
+                <a href="/admin/logout" class="block py-2.5 px-4 text-red-400 hover:bg-red-600">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <!-- Header -->
+            <header class="flex justify-between items-center bg-white shadow rounded-lg p-4 mb-6">
+                <h1 class="text-2xl font-bold"><%= pageHeader %></h1>
+                <div class="flex items-center gap-4">
+                    <span>Welcome, <%= admin.name %></span>
+                    <img src="https://via.placeholder.com/30" alt="Profile" class="rounded-full">
+                </div>
+            </header>
+
+            <!-- Dynamic Content -->
+            <div>
+                <%- body %> <!-- This is where the specific page content will be rendered -->
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

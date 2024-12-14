@@ -10,91 +10,291 @@
             margin: 0;
             padding: 0;
             background-color: #f9fafb;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
             color: #333;
         }
 
-        p.subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #666;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #12192c;
+            color: #ffffff;
         }
 
-        .option-list {
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f2f2f2;
+        }
+
+        .navbar .menu {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            align-items: center;
             gap: 20px;
         }
 
-        .option-card {
-            width: 150px;
-            height: 150px;
+        .navbar .menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .navbar .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.navbar .profile-name {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.navbar .profile .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Positioned below the profile */
+    right: 0;
+    background-color: #1f2a40;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 150px;
+    z-index: 1000; /* Ensure it stays above other elements */
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.navbar .profile:hover .dropdown,
+.navbar .profile .dropdown:hover {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar .profile .dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.navbar .profile .dropdown a:hover {
+    background-color: #30415d;
+}
+
+        .navbar .profile:hover .dropdown {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .services {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .service-card {
+            flex: 1;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
+            text-align: center;
+            padding: 20px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .option-card:hover {
+        .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
-        .option-card img {
-            width: 60px;
+        .service-card img {
+            width: 100px;
             height: auto;
             margin-bottom: 10px;
         }
 
-        .option-card span {
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+        }
+
+        .pricing {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .pricing h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .pricing-card {
+            flex: 1;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card p {
             font-size: 1rem;
-            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Apex Solutions</div>
+        <div class="menu">
+            <a href="/services">Services</a>
+            <a href="/orders">Orders</a>
+            <a href="/payment-history">Payment History</a>
+            <a href="/support-tickets">Support Tickets</a>
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/30" alt="Profile">
+            <span class="profile-name">Kyle Brazil ▼</span>
+            <div id="dropdown" class="dropdown">
+                <a href="/settings">Settings</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
     <div class="container">
-        <h1>Device Repair</h1>
-        <p class="subtitle">Select the device you want to repair:</p>
-        <div class="option-list">
-            <!-- Phone -->
-            <a href="/service/device-repair/phone" class="option-card">
-                <img src="https://via.placeholder.com/60" alt="Phone">
-                <span>Phone</span>
+        <div class="hero">
+            <h1>Device Repair</h1>
+            <p>Fast and reliable repair services for all your devices.</p>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services">
+            <a href="/service/device-repair/phone" class="service-card">
+                <img src="/images/mobile-phone.gif" alt="Phone Repairs">
+                <h3>Phone Repairs</h3>
+                <p>Fast and reliable phone repair services tailored for your needs.</p>
+                <ul>
+                    <li>Screen replacement</li>
+                    <li>Battery replacement</li>
+                    <li>Charging port issues</li>
+                    <li>Camera repairs</li>
+                </ul>
             </a>
-            <!-- Computer -->
-            <a href="/service/device-repair/computer" class="option-card">
-                <img src="https://via.placeholder.com/60" alt="Computer">
-                <span>Computer</span>
+            <a href="/service/device-repair/computer" class="service-card">
+                <img src="/images/php.gif" alt="Computer Repairs">
+                <h3>Computer Repairs</h3>
+                <p>Comprehensive repair services for desktops, laptops, and more.</p>
+                <ul>
+                    <li>Hardware Repairs</li>
+                    <li>Software Fixes</li>
+                    <li>Performance Enhancements</li>
+                </ul>
             </a>
-            <!-- Printer -->
-            <a href="/service/device-repair/printer" class="option-card">
-                <img src="https://via.placeholder.com/60" alt="Printer">
-                <span>Printer</span>
+            <a href="/service/device-repair/others" class="service-card">
+                <img src="/images/more.gif" alt="Other Repairs">
+                <h3>Others</h3>
+                <p>Device not found? Click here to browse for more options.</p>
             </a>
-            <!-- IoT Devices -->
-            <a href="/service/device-repair/iot" class="option-card">
-                <img src="https://via.placeholder.com/60" alt="IoT Devices">
-                <span>IoT Devices</span>
-            </a>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="pricing">
+            <h2>Pricing Overview</h2>
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <h3>Phone Repairs</h3>
+                    <p>Starting at $50</p>
+                    <ul>
+                        <li>Screen Replacement: $50</li>
+                        <li>Battery Replacement: $30</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>Computer Repairs</h3>
+                    <p>Starting at $80</p>
+                    <ul>
+                        <li>Hardware Repairs: $80</li>
+                        <li>Software Fixes: $40</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>

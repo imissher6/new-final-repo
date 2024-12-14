@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Signup</title>
+    <title>Admin Login / Signup</title>
     <style>
-        /* From Uiverse.io by andrew-demchenk0 */
         body {
             font-family: Arial, sans-serif;
             background-color: #12192c;
@@ -16,6 +15,7 @@
             height: 100vh;
             margin: 0;
         }
+
         .wrapper {
             --input-focus: #2d8cf0;
             --font-color: #fefefe;
@@ -23,6 +23,7 @@
             --bg-color: #12192c;
             --main-color: #fefefe;
         }
+
         .switch {
             transform: translateY(-200px);
             position: relative;
@@ -34,6 +35,7 @@
             width: 50px;
             height: 20px;
         }
+
         .card-side::before {
             position: absolute;
             content: 'Log in';
@@ -44,6 +46,7 @@
             color: var(--font-color);
             font-weight: 600;
         }
+
         .card-side::after {
             position: absolute;
             content: 'Sign up';
@@ -54,11 +57,13 @@
             color: var(--font-color);
             font-weight: 600;
         }
+
         .toggle {
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .slider {
             box-sizing: border-box;
             border-radius: 5px;
@@ -73,6 +78,7 @@
             background-color: var(--bg-color);
             transition: 0.3s;
         }
+
         .slider:before {
             box-sizing: border-box;
             position: absolute;
@@ -87,21 +93,26 @@
             box-shadow: 0 3px 0 var(--main-color);
             transition: 0.3s;
         }
+
         .toggle:checked + .slider {
             background-color: var(--input-focus);
         }
+
         .toggle:checked + .slider:before {
             transform: translateX(30px);
         }
+
         .toggle:checked ~ .card-side:before {
             text-decoration: none;
         }
+
         .toggle:checked ~ .card-side:after {
             text-decoration: underline;
         }
+
         .flip-card__inner {
             width: 300px;
-            height: 350px;
+            height: 400px;
             position: relative;
             background-color: transparent;
             perspective: 1000px;
@@ -109,9 +120,11 @@
             transition: transform 0.8s;
             transform-style: preserve-3d;
         }
+
         .toggle:checked ~ .flip-card__inner {
             transform: rotateY(180deg);
         }
+
         .flip-card__front, .flip-card__back {
             padding: 20px;
             position: absolute;
@@ -126,16 +139,19 @@
             border: 2px solid var(--main-color);
             box-shadow: 4px 4px var(--main-color);
         }
+
         .flip-card__back {
             width: 100%;
             transform: rotateY(180deg);
         }
+
         .flip-card__form {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
         }
+
         .title {
             margin: 20px 0 20px 0;
             font-size: 25px;
@@ -143,6 +159,7 @@
             text-align: center;
             color: var(--main-color);
         }
+
         .flip-card__input {
             width: 250px;
             height: 40px;
@@ -156,6 +173,7 @@
             padding: 5px 10px;
             outline: none;
         }
+
         .flip-card__btn {
             margin: 20px 0 20px 0;
             width: 120px;
@@ -169,33 +187,6 @@
             color: var(--font-color);
             cursor: pointer;
         }
-        .footer {
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #12192c; /* Match the page background */
-    color: #7e7e7e; /* Subtle text color */
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    font-size: 0.9rem;
-}
-
-.footer a {
-    font-size: 10px;
-    color: #7e7e7e;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-
-.footer a:hover {
-    color: #fefefe; /* Highlight on hover */
-}
-.span
-{
-    font-size: 10px;
-}
     </style>
 </head>
 <body>
@@ -206,50 +197,30 @@
                 <span class="slider"></span>
                 <span class="card-side"></span>
                 <div class="flip-card__inner">
-                    <!-- Login Form -->
+                    <!-- Admin Login Form -->
                     <div class="flip-card__front">
-                        <div class="title">Log in</div>
-                        <form action="/login" method="POST" class="flip-card__form">
-                            <input type="text" placeholder="Username or Email" name="usernameOrEmail" class="flip-card__input" required>
+                        <div class="title">Admin Login</div>
+                        <form action="/admin/login" method="POST" class="flip-card__form">
+                            <input type="text" placeholder="Username" name="username" class="flip-card__input" required>
                             <input type="password" placeholder="Password" name="password" class="flip-card__input" required>
-                            <button type="submit" class="flip-card__btn">Let's go!</button>
+                            <button type="submit" class="flip-card__btn">Login</button>
                         </form>
                     </div>
                     
-                    <!-- Signup Form -->
+                    <!-- Admin Signup Form -->
                     <div class="flip-card__back">
-                        <div class="title">Sign up</div>
-                        <form action="/register" method="POST" class="flip-card__form">
-                            <input type="text" name="firstName" placeholder="First Name" class="flip-card__input" required>
-                            <input type="text" name="lastName" placeholder="Last Name" class="flip-card__input" required>
-                            <input type="text" name="username" placeholder="Username" class="flip-card__input" required>
+                        <div class="title">Admin Sign up</div>
+                        <form action="/admin/register" method="POST" class="flip-card__form">
+                            <input type="text" name="name" placeholder="Full Name" class="flip-card__input" required>
                             <input type="email" name="email" placeholder="Email" class="flip-card__input" required>
+                            <input type="text" name="username" placeholder="Username" class="flip-card__input" required>
                             <input type="password" name="password" placeholder="Password" class="flip-card__input" required>
-                            <button type="submit" class="flip-card__btn">Confirm!</button>
+                            <button type="submit" class="flip-card__btn">Register</button>
                         </form>
                     </div>
                 </div>
             </label>
         </div>
     </div>
-    <div class="footer">
-        <a href="/about">About</a>
-        <a href="/help-center">Help Center</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/cookies">Cookie Policy</a>
-        <a href="/accessibility">Accessibility</a>
-        <a href="/ads-info">Ads Info</a>
-        <a href="/blog">Blog</a>
-        <a href="/careers">Careers</a>
-        <a href="/brand-resources">Brand Resources</a>
-        <a href="/advertising">Advertising</a>
-        <a href="/marketing">Marketing</a>
-        <a href="/developers">Developers</a>
-        <a href="/directory">Directory</a>
-        <a href="/settings">Settings</a>
-        <span class="span">© 2024 Apex Solutions</span>
-    </div>
-    
 </body>
 </html>

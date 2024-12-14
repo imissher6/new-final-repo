@@ -9,21 +9,23 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9fafb;
+            background-color: #ffffff;
+            color: #ffffff;
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+            padding: 20px;
+            background-color: #12192c;
+            color: #ffffff;
         }
 
         .navbar .logo {
             font-size: 1.5rem;
             font-weight: bold;
+            color: #f2f2f2;
         }
 
         .navbar .menu {
@@ -33,7 +35,7 @@
         }
 
         .navbar .menu a {
-            color: #fff;
+            color: #ffffff;
             text-decoration: none;
             font-size: 1rem;
         }
@@ -43,36 +45,58 @@
         }
 
         .navbar .profile {
-            position: relative;
-        }
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .navbar .profile .profile-name {
-            cursor: pointer;
-        }
+.navbar .profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
 
-        .navbar .profile .dropdown {
-            display: none;
-            position: absolute;
-            top: 30px;
-            right: 0;
-            background-color: #fff;
-            color: #333;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            width: 150px;
-        }
+.navbar .profile-name {
+    cursor: pointer;
+    color: #ffffff;
+}
 
-        .navbar .profile .dropdown a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-        }
+.navbar .profile .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Positioned below the profile */
+    right: 0;
+    background-color: #1f2a40;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 150px;
+    z-index: 1000; /* Ensure it stays above other elements */
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+}
 
-        .navbar .profile .dropdown a:hover {
-            background-color: #f9fafb;
-        }
+.navbar .profile:hover .dropdown,
+.navbar .profile .dropdown:hover {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.navbar .profile .dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.navbar .profile .dropdown a:hover {
+    background-color: #30415d;
+}
 
         .navbar .profile:hover .dropdown {
             display: block;
@@ -88,84 +112,149 @@
             font-size: 2rem;
             margin-bottom: 10px;
             color: #333;
-            text-transform: uppercase;
             font-weight: bold;
         }
 
         p.subtitle {
             font-size: 1.2rem;
             margin-bottom: 20px;
-            color: #666;
+            color: #333;
         }
 
-        .card-container {
+        .card-container, .quick-links, .billing-payments, .support-center {
+            margin-top: 2rem;
             display: flex;
-            gap: 20px;
             flex-wrap: wrap;
+            gap: 20px;
             justify-content: space-between;
         }
 
-        .card {
-            flex: 1 1 calc(50% - 20px);
-            background-color: white;
+        .card, .quick-link, .billing-card, .support-card {
+            flex: 1 1 calc(30% - 20px);
+            background-color: #12192c;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
             text-decoration: none;
+            color: #ffffff;
+            padding: 15px;
+            text-align: center;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            color: #333; /* Ensures text color matches */
         }
 
-        .card:hover {
+        .card:hover, .quick-link:hover, .billing-card:hover, .support-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
-        .card img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .card img, .quick-link img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            border: 2px solid #ffffff; /* Border for the icon */
+            border-radius: 8px; /* Rounded edges for the border */
+            padding: 5px; /* Optional spacing inside the border */
+            background-color: #ffffff; /* Background color for contrast */
         }
 
-        .card-content {
-            padding: 15px;
+        .quick-link img {
+            border-bottom: none;
         }
 
-        .card-content h3 {
+        .card h3, .quick-link h3 {
+            margin: 10px 0;
             font-size: 1.2rem;
-            margin: 0 0 10px;
-            color: #222;
+            font-weight: bold;
         }
 
-        .card-content p {
-            font-size: 0.9rem;
-            color: #555;
-            margin: 0;
+        .card p, .quick-link p {
+            margin: 5px 0;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <%- include('partials/_navbar') %>    
+    <div class="navbar">
+        <div class="logo">Apex Solutions</div>
+        <div class="menu">
+            <a href="/services">Services</a>
+            <a href="/orders">Orders</a>
+            <a href="/payment-history">Payment History</a>
+            <a href="/support-tickets">Support Tickets</a>
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/30" alt="Profile">
+            <span class="profile-name"><%= user.firstName %> <%= user.lastName %> ▼</span>
+            <div id="dropdown" class="dropdown">
+                <a href="/settings">Settings</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Expert IT Services</h1>
+        <h1>Services</h1>
         <p class="subtitle">Reliable solutions for all your IT needs</p>
+
+        <!-- Existing Services Section -->
         <div class="card-container">
-            <!-- Example Cards -->
             <a href="/service/device-repair" class="card">
-                <img src="https://via.placeholder.com/600x300" alt="Device Repair">
+                <img src="/images/mobile-phone.gif" alt="Device Repair">
                 <div class="card-content">
                     <h3>Device Repair</h3>
                     <p>Expert repair solutions for malfunctioning devices.</p>
                 </div>
             </a>
             <a href="/service/equipment-replacement" class="card">
-                <img src="https://via.placeholder.com/600x300" alt="Equipment Replacement">
+                <img src="/images/repair-tools.gif" alt="Equipment Replacement">
                 <div class="card-content">
                     <h3>Equipment Replacement</h3>
                     <p>Reliable replacement options for essential equipment.</p>
                 </div>
             </a>
-            <!-- Add more service cards as needed -->
+        </div>
+
+        <!-- New Features Section -->
+        <h2>Quick Links</h2>
+        <div class="quick-links">
+            <a href="/invoices" class="quick-link">
+                <img src="/images/invoice.gif" alt="Invoices">
+                <h3>Invoices</h3>
+                <p>View and manage your bills</p>
+            </a>
+            <a href="/support-tickets" class="quick-link">
+                <img src="/images/ticket.gif" alt="Support Tickets">
+                <h3>Support Tickets</h3>
+                <p>Track and resolve your issues</p>
+            </a>
+            <a href="/project-progress" class="quick-link">
+                <img src="/images/projects.gif" alt="Project Progress">
+                <h3>Project Progress</h3>
+                <p>Monitor your ongoing projects</p>
+            </a>
+        </div>
+
+        <h2>Billing & Payments</h2>
+        <div class="billing-payments">
+            <div class="billing-card">
+                <h3>Payment History</h3>
+                <p>Review your completed transactions</p>
+            </div>
+            <div class="billing-card">
+                <h3>Manage Subscriptions</h3>
+                <p>Modify or cancel ongoing services</p>
+            </div>
+        </div>
+
+        <h2>Support Center</h2>
+        <div class="support-center">
+            <div class="support-card">
+                <h3>Submit Tickets</h3>
+                <p>File and track support requests</p>
+            </div>
+            <div class="support-card">
+                <h3>Knowledge Base</h3>
+                <p>Access FAQs and tutorials</p>
+            </div>
         </div>
     </div>
 </body>

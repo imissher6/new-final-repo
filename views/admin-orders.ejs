@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9fafb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .actions button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .actions button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Orders Management</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (orders.length === 0) { %>
+                    <tr>
+                        <td colspan="6">No orders found.</td>
+                    </tr>
+                <% } else { %>
+                    <% orders.forEach(order => { %>
+                        <tr>
+                            <td><%= order.device %></td>
+                            <td><%= new Date(order.date).toLocaleDateString() %></td>
+                            <td><%= order.time %></td>
+                            <td><%= order.issue %></td>
+                            <td><%= order.status %></td>
+                            <td class="actions">
+                                <form action="/admin/orders/delete/<%= order._id %>" method="POST" style="display:inline;">
+                                    <button type="submit">Delete</button>
+                                </form>
+                                <form action="/admin/orders/update/<%= order._id %>" method="POST" style="display:inline;">
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

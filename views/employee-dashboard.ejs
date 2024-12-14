@@ -12,77 +12,214 @@
             background-color: #f9fafb;
         }
 
-        .navbar {
-            background-color: #007bff;
-            color: white;
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #12192c;
+            color: #ffffff;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ffffff;
             padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar a {
-            color: white;
             text-decoration: none;
-            margin: 0 10px;
+            border-bottom: 1px solid #1f2a40;
         }
 
-        .container {
+        .sidebar a:hover {
+            background-color: #1f2a40;
+        }
+
+        .sidebar a.logout {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 250px;
             padding: 20px;
         }
 
-        h1 {
-            font-size: 1.8rem;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .card {
+        .navbar input {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Statistics Cards */
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            flex: 1;
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .card h2 {
-            margin: 0 0 10px;
-            font-size: 1.5rem;
+        .stat-card h3 {
+            margin: 0;
+            color: #555;
+        }
+
+        .stat-card p {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0 0;
+        }
+
+        /* Recent Orders */
+        .recent-orders {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .recent-orders table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .recent-orders table th,
+        .recent-orders table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .recent-orders table th {
+            background-color: #f9fafb;
+        }
+
+        .status-completed {
+            color: #28a745; /* Green */
+        }
+
+        .status-pending {
+            color: #ffc107; /* Yellow */
+        }
+
+        .status-processing {
+            color: #007bff; /* Blue */
+        }
+
+        .status-cancelled {
+            color: #dc3545; /* Red */
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <div>Welcome, <%= employee.name %></div>
-        <div>
-            <a href="/employee/dashboard">Dashboard</a>
-            <a href="/employee/logout">Logout</a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Apex Solutions</h2>
+        <a href="/employee/dashboard">Dashboard</a>
+        <a href="/employee/orders">Orders</a>
+        <a href="/employee/tickets">Tickets</a>
+        <a href="/employee/projects">Projects</a>
+        <a href="/employee/settings">Settings</a>
+        <a href="/employee/logout" class="logout">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Navbar -->
+        <div class="navbar">
+            <input type="text" placeholder="Search..." />
+            <div class="profile">
+                <img src="https://via.placeholder.com/30" alt="Profile">
+                <span>Welcome, <%= employee.name %></span>
+            </div>
         </div>
-    </header>
-    <div class="container">
+
+        <!-- Dashboard Content -->
         <h1>Employee Dashboard</h1>
-        <div class="card">
-            <h2>Orders</h2>
-            <p>Manage all client orders.</p>
-            <a href="/employee/orders">View Orders</a>
+
+        <!-- Statistics Cards -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Paid Order</h3>
+                <p>1,074</p>
+            </div>
+            <div class="stat-card">
+                <h3>Site Visit</h3>
+                <p>3,944</p>
+            </div>
+            <div class="stat-card">
+                <h3>Searches</h3>
+                <p>14,721</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Sales</h3>
+                <p>$6,742</p>
+            </div>
         </div>
-        <div class="card">
-            <h2>Tickets</h2>
-            <p>Track client tickets and support issues.</p>
-            <a href="/employee/tickets">View Tickets</a>
-        </div>
-        <div class="card">
-            <h2>Sales</h2>
-            <p>Track and manage sales data.</p>
-            <a href="/employee/sales">View Sales</a>
-        </div>
-        <div class="card">
-            <h2>Reports</h2>
-            <p>Generate and view reports.</p>
-            <a href="/employee/reports">View Reports</a>
-        </div>
-        <div class="card">
-            <h2>Projects</h2>
-            <p>Manage client projects.</p>
-            <a href="/employee/projects">View Projects</a>
+
+        <!-- Recent Orders -->
+        <div class="recent-orders">
+            <h2>Recent Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Device</th>
+                        <th>Order Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+    <% recentOrders.forEach(order => { %>
+        <tr>
+            <td>
+                <%= order.userId ? `${order.userId.firstName} ${order.userId.lastName}` : 'Unknown User' %>
+            </td>
+            <td><%= order.device %></td>
+            <td><%= new Date(order.date).toLocaleDateString() %></td>
+            <td class="<%= 'status-' + order.status.toLowerCase() %>"><%= order.status %></td>
+        </tr>
+    <% }) %>
+</tbody>
+            </table>
         </div>
     </div>
 </body>

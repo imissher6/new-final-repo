@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #12192c;
+            color: #ffffff;
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-bottom: 1px solid #1f2a40;
+        }
+
+        .sidebar a:hover {
+            background-color: #1f2a40;
+        }
+
+        .sidebar a.logout {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .navbar input {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .navbar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Orders Table */
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .orders-table thead {
+            background-color: #12192c;
+            color: #ffffff;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            text-align: left;
+            padding: 15px;
+        }
+
+        .orders-table th {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .orders-table tbody tr:nth-child(odd) {
+            background-color: #f9fafb;
+        }
+
+        .orders-table tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .orders-table tbody tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .status {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .status-pending {
+            background-color: #ffc107;
+            color: #ffffff;
+        }
+
+        .status-working {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .status-completed {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions button {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .actions .accept-btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .actions .complete-btn {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .actions .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .actions button:hover {
+            opacity: 0.9;
+        }
+
+        /* From Uiverse.io by sihamjardi */ 
+.button {
+  position: relative;
+  border-radius: 6px;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #cc0000;
+  background-color: #e50000;
+  overflow: hidden;
+}
+
+.button,
+.button__icon,
+.button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(35px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #cc0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+}
+
+.button:hover {
+  background: #cc0000;
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button:active .button__icon {
+  background-color: #b20000;
+}
+
+.button:active {
+  border: 1px solid #b20000;
+}
+
+.select {
+    width: fit-content;
+    cursor: pointer;
+    position: relative;
+    transition: 300ms;
+    color: white;
+    overflow: hidden;
+}
+
+.selected {
+  background-color: #2a2f3b;
+  padding: 5px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 100000;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow {
+  position: relative;
+  right: 0px;
+  height: 10px;
+  transform: rotate(-90deg);
+  width: 25px;
+  fill: white;
+  z-index: 100000;
+  transition: 300ms;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Apex Solutions</h2>
+        <a href="/employee/dashboard">Dashboard</a>
+        <a href="/employee/orders">Orders</a>
+        <a href="/employee/sales">Sales</a>
+        <a href="/employee/tickets">Tickets</a>
+        <a href="/employee/reports">Reports</a>
+        <a href="/employee/projects">Projects</a>
+        <a href="/employee/users">Users</a>
+        <a href="/employee/settings">Settings</a>
+        <a href="/employee/logout" class="logout">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="profile">
+                <img src="https://via.placeholder.com/30" alt="Profile">
+                <span>Welcome, <%= employee.name %></span>
+            </div>
+        </div>
+
+        <!-- Orders Management -->
+        <h1>Manage Orders</h1>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Device</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td>
+                            <%= order.userId ? `${order.userId.firstName} ${order.userId.lastName}` : 'Unknown User' %>
+                        </td>
+                        <td><%= order.device %></td>
+                        <td><%= new Date(order.date).toLocaleDateString() %></td>
+                        <td>
+                            <form action="/employee/orders/update/<%= order._id %>" method="POST">
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="Pending" <%= order.status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                    <option value="Working" <%= order.status === 'Working' ? 'selected' : '' %>>Working</option>
+                                    <option value="Completed" <%= order.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>
+                            <button class="button" onclick="deleteOrder('<%= order._id %>')">
+                                <span class="button__text">Delete</span>
+                                <span class="button__icon">
+                                    <svg class="svg" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="white" d="M135.2 17.7C138.3 7.4 147.4 0 157.9 0H290.1C300.6 0 309.7 7.4 312.8 17.7L320 40H432C440.8 40 448 47.2 448 56C448 64.8 440.8 72 432 72H416L393.5 442.8C391.9 472.2 367.4 496 338 496H110C80.6 496 56.1 472.2 54.5 442.8L32 72H16C7.2 72 0 64.8 0 56C0 47.2 7.2 40 16 40H128L135.2 17.7zM145.5 184.2C147.9 179.1 152.9 176 158.5 176H289.5C295.1 176 300.1 179.1 302.5 184.2C305 189.3 304.4 195.5 300.8 200.2L227.3 304.3C224.7 308.1 219.3 308.1 216.7 304.3L143.2 200.2C139.6 195.5 139 189.3 141.5 184.2H145.5z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+            
+        </table>
+    </div>
+
+    <script>
+        function submitStatusForm(orderId) {
+            const form = document.getElementById(`status-form-${orderId}`);
+            const formData = new FormData(form);
+    
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Order status updated successfully!');
+                        location.reload();
+                    } else {
+                        alert('Failed to update status. Please try again.');
+                    }
+                })
+                .catch(err => console.error('Error updating status:', err));
+        }
+    </script>
+    
+    
+</body>
+</html>
